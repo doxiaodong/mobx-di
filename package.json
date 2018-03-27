@@ -1,0 +1,19 @@
+{
+  "name": "mobx-di",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "umi dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "doxiaodong",
+  "license": "MIT",
+  "dependencies": {
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.41"
+  }
+}

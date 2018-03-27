@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es2015",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "emitDecoratorMetadata": true
+  }
+}
