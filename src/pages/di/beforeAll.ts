@@ -1,4 +1,5 @@
-import { Inject } from 'di';
-import { User } from 'stores/anotherUser';
+import { replace } from 'di';
+import { User as AnotherUser } from 'stores/anotherUser';
+import { User } from 'stores/user';
 
-Inject(User);
+replace(AnotherUser, User);
