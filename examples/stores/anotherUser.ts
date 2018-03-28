@@ -3,8 +3,6 @@ import { Injectable } from '../../src'
 
 @Injectable()
 export class User {
-  static injectName = 'User'
-
   @observable
   userInfo = {
     isLogin: true,

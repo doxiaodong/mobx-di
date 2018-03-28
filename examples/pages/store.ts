@@ -5,7 +5,6 @@ import { Injectable } from '../../src'
 
 @Injectable()
 export class HomeStore {
-  static injectName = 'DIStore'
   constructor(private _user: User) {
     console.log('user', _user)
   }
