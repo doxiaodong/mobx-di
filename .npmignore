@@ -1,5 +1,8 @@
 .DS_Store
 
+.circleci/
 coverage/
-lib/
+examples/
 node_modules/
+src/
+tests/

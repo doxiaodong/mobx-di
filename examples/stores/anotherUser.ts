@@ -1,0 +1,22 @@
+import { observable, action, runInAction } from 'mobx'
+import { Injectable } from '../../src'
+
+@Injectable()
+export class User {
+  static injectName = 'User'
+
+  @observable
+  userInfo = {
+    isLogin: true,
+    name: 'another hmp',
+    type: 0
+  }
+
+  @action.bound
+  async logout() {
+    await Promise.resolve(true) // 这一条模拟 API 请求
+    return runInAction('logout', () => {
+      this.userInfo.isLogin = !this.userInfo.isLogin
+    })
+  }
+}

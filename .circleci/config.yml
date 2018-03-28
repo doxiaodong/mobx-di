@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/workspace
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          key: mobx-di-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm i --registry https://registry.npmjs.org
+      - run:
+          name: Build
+          command: npm run ci
+      - run:
+          name: Report coverage
+          command: npm run codecov
+      - save_cache:
+          key: mobx-di-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
