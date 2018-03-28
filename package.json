@@ -1,6 +1,6 @@
 {
   "name": "mobx-di",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.4",
   "description": "Simple DI used in mobx",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -24,6 +24,9 @@
     "react": "^16.2.0",
     "ts-jest": "^22.4.2",
     "typescript": "^2.8.1"
+  },
+  "peerDependencies": {
+    "core-js": "^2.5.0"
   },
   "jest": {
     "transform": {
