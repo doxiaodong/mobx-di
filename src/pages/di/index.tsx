@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import { Instance } from 'mobx-di';
 
 import './beforeAll';
 import Navbar from 'components/Navbar';
-import { Instance } from 'di';
 import { DIStore } from './store';
 
 @observer

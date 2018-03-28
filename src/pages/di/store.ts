@@ -1,11 +1,10 @@
 import { computed, action } from 'mobx';
+import { Injectable } from 'mobx-di';
 
 import { User } from 'stores/user';
-import { Injectable } from 'di';
 
 @Injectable()
 export class DIStore {
-  static injectName = 'DIStore';
   constructor(private _user: User) {
     console.log('user', _user);
   }

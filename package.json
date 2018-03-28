@@ -10,10 +10,13 @@
   "author": "doxiaodong",
   "license": "MIT",
   "dependencies": {
+    "core-js": "^2.5.4",
     "mobx": "^4.1.0",
+    "mobx-di": "^1.0.0-beta.4",
     "mobx-react": "^5.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.0.41"
+    "@types/react": "^16.0.41",
+    "typescript": "^2.8.1"
   }
 }
