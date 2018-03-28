@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "target": "es2015",
+    "target": "es5",
+    "module": "es2015",
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "baseUrl": "src",
-    "emitDecoratorMetadata": true
-  }
+    "emitDecoratorMetadata": true,
+    "outDir": "lib",
+    "lib": ["es2015"]
+  },
+  "exclude": ["node_modules", "examples", "tests"]
 }

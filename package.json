@@ -1,19 +1,37 @@
 {
   "name": "mobx-di",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.0-beta.2",
+  "description": "Simple DI used in mobx",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "umi dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf coverage && rm -rf lib",
+    "codecov": "cat ./coverage/lcov.info | codecov",
+    "ci": "npm run clean && tsc -d && npm run test",
+    "test": "jest --coverage --no-cache",
+    "pub": "npm run ci && npm publish --registry https://registry.npmjs.org"
   },
   "author": "doxiaodong",
   "license": "MIT",
-  "dependencies": {
-    "mobx": "^4.1.0",
-    "mobx-react": "^5.0.0"
-  },
   "devDependencies": {
-    "@types/react": "^16.0.41"
+    "@types/jest": "^22.2.2",
+    "@types/react": "^16.0.41",
+    "codecov": "^3.0.0",
+    "jest": "^22.4.3",
+    "mobx": "^4.1.0",
+    "mobx-react": "^5.0.0",
+    "react": "^16.2.0",
+    "ts-jest": "^22.4.2",
+    "typescript": "^2.8.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/tests/.*|\\.(test|spec))\\.(ts|js)$",
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": ["ts", "js"]
   }
 }
