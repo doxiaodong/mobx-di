@@ -1,5 +1,5 @@
 import { computed, action } from 'mobx';
-import { Injectable } from 'mobx-di';
+import { Injectable } from 'di';
 
 import { User } from 'stores/user';
 

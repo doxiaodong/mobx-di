@@ -1,4 +1,4 @@
-import { replace } from 'mobx-di';
+import { replace } from 'di';
 import { User as AnotherUser } from 'stores/anotherUser';
 import { User } from 'stores/user';
 
