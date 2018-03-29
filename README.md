@@ -90,14 +90,16 @@ export default class Home extends React.Component {
 
 ## Advance
 
-You can replace any store in your code by `replace` mothod if you want
-It's in `examples/pages/beforAll`
+1.  You can replace any store in your code by `replace` mothod if you want,
+    It's in `examples/pages/beforAll`
 
-If you want multi instance of a store in multi modules, follow it
+2.  If you want to use a store out of any class, you may need `getInstance(Class)`
+
+3.  If you want multi instance of a store in multi modules, follow it
 
 ```typescript
 import { DI } from 'mobx-di'
 const di1 = new DI()
 ```
 
-And then you can use the `di1.Injectable`, `di1.Instance`, `di1.replace`
+And then you can use the `di1.Injectable`, `di1.Instance`, `di1.replace`, `di1.getInstance`

@@ -9,6 +9,7 @@ class DI {
     this.Instance = this.Instance.bind(this)
     this.Injectable = this.Injectable.bind(this)
     this.replace = this.replace.bind(this)
+    this.getInstance = this.getInstance.bind(this)
   }
   private _depsMap = new Map()
   private _instancesMap = new Map()
@@ -20,7 +21,7 @@ class DI {
       const self = this
       Object.defineProperty(target, key, {
         get() {
-          return self._resolve(dep)
+          return self.getInstance(dep)
         }
       })
     }
@@ -47,6 +48,10 @@ class DI {
     news.forEach((n, i) => {
       this._replace(n, prevs[i])
     })
+  }
+
+  getInstance<T>(dep: { new (...args): T }): T {
+    return this._resolve(dep)
   }
 
   private _replace(newTarget, prevTarget) {
@@ -99,6 +104,6 @@ class DI {
   }
 }
 
-const { Instance, Injectable, replace } = new DI()
+const { Instance, Injectable, replace, getInstance } = new DI()
 
-export { DI, Instance, Injectable, replace }
+export { DI, Instance, Injectable, replace, getInstance }
