@@ -2,12 +2,12 @@ import * as React from 'react'
 import { observer } from 'mobx-react'
 
 import './beforeAll'
-import { Instance } from '../../src'
+import { Inject } from '../../src'
 import { HomeStore } from './store'
 
 @observer
 export default class Home extends React.Component {
-  @Instance() home: HomeStore
+  @Inject() home: HomeStore
 
   render() {
     return (

@@ -6,7 +6,7 @@ declare namespace Reflect {
 
 class DI {
   constructor() {
-    this.Instance = this.Instance.bind(this)
+    this.Inject = this.Inject.bind(this)
     this.Injectable = this.Injectable.bind(this)
     this.replace = this.replace.bind(this)
     this.getInstance = this.getInstance.bind(this)
@@ -14,8 +14,8 @@ class DI {
   private _depsMap = new Map()
   private _instancesMap = new Map()
 
-  // @Instance() homeStore: HomeStore
-  Instance() {
+  // @Inject() homeStore: HomeStore
+  Inject() {
     return (target, key: string) => {
       const dep = Reflect.getMetadata('design:type', target, key)
       const self = this
@@ -104,6 +104,6 @@ class DI {
   }
 }
 
-const { Instance, Injectable, replace, getInstance } = new DI()
+const { Inject, Injectable, replace, getInstance } = new DI()
 
-export { DI, Instance, Injectable, replace, getInstance }
+export { DI, Inject, Injectable, replace, getInstance }

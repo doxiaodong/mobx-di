@@ -38,7 +38,7 @@ export class User {
 
 ```typescript
 import { computed, action } from 'mobx'
-import { Injectable } from 'mobx-di'
+import { Injectable, Inject } from 'mobx-di'
 
 import { User } from '../stores/user'
 
@@ -52,6 +52,9 @@ export class HomeStore {
     return this._user.userInfo
   }
 
+  // or
+  // @Inject() _user: User
+
   @action.bound
   toggle() {
     return this._user.logout()
@@ -64,18 +67,18 @@ export class HomeStore {
 }
 ```
 
-* Instance in component
+* Inject in component
 
 ```typescript
 import * as React from 'react'
 import { observer } from 'mobx-react'
-import { Instance } from 'mobx-di'
+import { Inject } from 'mobx-di'
 
 import { HomeStore } from './store'
 
 @observer
 export default class Home extends React.Component {
-  @Instance() home: HomeStore
+  @Inject() home: HomeStore
 
   render() {
     return (
