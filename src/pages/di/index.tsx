@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { Instance, getInstance } from 'di';
+import { getInstance, Inject } from 'di';
 
 import './beforeAll';
 import Navbar from 'components/Navbar';
@@ -11,7 +11,7 @@ console.log(a.userInfo.name);
 
 @observer
 export default class DI extends React.Component {
-  @Instance() diStore: DIStore;
+  @Inject() diStore: DIStore;
 
   render() {
     return (
