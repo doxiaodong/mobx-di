@@ -14,10 +14,11 @@ class DI {
   private _depsMap = new Map()
   private _instancesMap = new Map()
 
-  // @Inject() homeStore: HomeStore
-  Inject() {
+  // ts: @Inject() homeStore: HomeStore
+  // js/ts: @Inject(HomeStore): homeStore
+  Inject<T>(jsdep?: { new (...args): T }) {
     return (target, key: string) => {
-      const dep = Reflect.getMetadata('design:type', target, key)
+      const dep = jsdep || Reflect.getMetadata('design:type', target, key)
       const self = this
       Object.defineProperty(target, key, {
         get() {
@@ -27,10 +28,15 @@ class DI {
     }
   }
 
-  // @Injectable() class Store {}
-  Injectable(forceInject = false) {
+  // ts: @Injectable() class Store {}
+  // js/ts: @Injectable(A, B, C) class Store {}
+  Injectable(...args: { new (...args): any }[]) {
     return target => {
-      this._inject(target, forceInject)
+      if (args.length === 0) {
+        this._inject(target)
+      } else {
+        this._inject(target, args)
+      }
     }
   }
 
@@ -55,16 +61,24 @@ class DI {
   }
 
   private _replace(newTarget, prevTarget) {
-    this._inject(newTarget, this._getTargetUid(prevTarget), true)
+    this._inject(newTarget, null, this._getTargetUid(prevTarget))
   }
 
-  private _inject(target, fixedUid = null, forceInject = false) {
+  private _inject(
+    target,
+    // js 用法需要传入的 jsDeps
+    jsDeps: any[] = null,
+    // replace 需要的修正的 target
+    fixedUid = null
+  ) {
+    // 如果有 fixedUid ，则强制替换掉依赖
+    const forceInject = !!fixedUid
     const uid = fixedUid || this._getTargetUid(target)
-    const deps = Reflect.getMetadata('design:paramtypes', target)
     const hasDep = this._depsMap.has(uid)
     const hasInstance = this._instancesMap.has(uid)
     if (!hasDep || forceInject) {
-      this._depsMap.set(uid, deps)
+      const deps = jsDeps || Reflect.getMetadata('design:paramtypes', target)
+      deps && this._depsMap.set(uid, deps)
     }
     if (forceInject && hasInstance) {
       this._instancesMap.delete(uid)

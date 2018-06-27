@@ -7,9 +7,9 @@
 
 ## Usage
 
-* `npm i mobx-di`
+- `npm i mobx-di`
 
-* Basic store User
+- Basic store User
 
 ```typescript
 import { observable, action, runInAction } from 'mobx'
@@ -34,7 +34,9 @@ export class User {
 }
 ```
 
-* Another store which has the `User` dependence
+- Another store which has the `User` dependence
+
+typescript
 
 ```typescript
 import { computed, action } from 'mobx'
@@ -67,7 +69,42 @@ export class HomeStore {
 }
 ```
 
-* Inject in component
+javascript
+
+```javascript
+import { computed, action } from 'mobx'
+import { Injectable, Inject } from 'mobx-di'
+
+import { User } from '../stores/user'
+
+@Injectable(User)
+export class HomeStore {
+  constructor(_user) {
+    console.log('user', _user)
+  }
+  @computed
+  get userInfo() {
+    return this._user.userInfo
+  }
+
+  // or
+  // @Inject(User) _user
+
+  @action.bound
+  toggle() {
+    return this._user.logout()
+  }
+
+  @computed
+  get btnDesc() {
+    return this.userInfo.isLogin ? '退出' : '登录'
+  }
+}
+```
+
+- Inject in component
+
+typescript
 
 ```typescript
 import * as React from 'react'
@@ -79,6 +116,30 @@ import { HomeStore } from './store'
 @observer
 export default class Home extends React.Component {
   @Inject() home: HomeStore
+
+  render() {
+    return (
+      <>
+        <button onClick={this.home.toggle}>{this.home.btnDesc}</button>
+        {JSON.stringify(this.home.userInfo)}
+      </>
+    )
+  }
+}
+```
+
+javascript
+
+```javascript
+import * as React from 'react'
+import { observer } from 'mobx-react'
+import { Inject } from 'mobx-di'
+
+import { HomeStore } from './store'
+
+@observer
+export default class Home extends React.Component {
+  @Inject(HomeStore) home
 
   render() {
     return (

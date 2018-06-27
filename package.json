@@ -1,10 +1,13 @@
 {
   "name": "mobx-di",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-rc.1",
   "description": "Simple DI used in mobx",
   "main": "lib/index.js",
   "module": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "clean": "rm -rf coverage && rm -rf lib",
     "codecov": "cat ./coverage/lcov.info | codecov",
@@ -15,15 +18,15 @@
   "author": "doxiaodong",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^22.2.2",
-    "@types/react": "^16.0.41",
-    "codecov": "^3.0.0",
-    "jest": "^22.4.3",
-    "mobx": "^4.1.0",
-    "mobx-react": "^5.0.0",
-    "react": "^16.2.0",
-    "ts-jest": "^22.4.2",
-    "typescript": "^2.8.1"
+    "@types/jest": "^23.1.2",
+    "@types/react": "^16.4.2",
+    "codecov": "^3.0.2",
+    "jest": "^23.2.0",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
+    "react": "^16.4.1",
+    "ts-jest": "^22.4.6",
+    "typescript": "^2.9.2"
   },
   "peerDependencies": {
     "core-js": "^2.5.0"
@@ -35,6 +38,9 @@
     },
     "testRegex": "(/tests/.*|\\.(test|spec))\\.(ts|js)$",
     "coverageDirectory": "coverage",
-    "moduleFileExtensions": ["ts", "js"]
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
   }
 }

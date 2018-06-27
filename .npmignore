@@ -1,8 +1,0 @@
-.DS_Store
-
-.circleci/
-coverage/
-examples/
-node_modules/
-src/
-tests/
