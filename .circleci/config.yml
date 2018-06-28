@@ -1,23 +1,71 @@
 version: 2
-jobs:
-  build:
-    working_directory: ~/workspace
+working_directory: &working_directory ~/workspace
+base: &base
+    working_directory: *working_directory
     docker:
-      - image: circleci/node:8
+        - image: circleci/node:8
     steps:
-      - checkout
-      - restore_cache:
-          key: mobx-di-{{ .Branch }}-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: npm i --registry https://registry.npmjs.org
-      - run:
-          name: Build
-          command: npm run ci
-      - run:
-          name: Report coverage
-          command: npm run codecov
-      - save_cache:
-          key: mobx-di-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - "node_modules"
+        - checkout
+        - restore_cache:
+            key: mobx-di-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "package.json" }}
+        - run:
+            name: Install dependencies
+            command: npm i
+        - run:
+            name: Build
+            command: npm run ci
+        - run:
+            name: Report coverage
+            command: npm run codecov
+        - save_cache:
+            key: mobx-di-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "package.json" }}
+            paths:
+                - "node_modules"
+
+jobs:
+    build_node_8:
+        <<: *base
+        docker:
+            - image: circleci/node:8
+
+    build_node_10:
+        <<: *base
+        docker:
+            - image: circleci/node:10
+
+    publish:
+        docker:
+            - image: circleci/node:8
+        working_directory: *working_directory
+        steps:
+            - checkout
+            - restore_cache:
+                # 采用 build_node_8 master
+                key: mobx-di-build_node_8-master-{{ checksum "package.json" }}
+            - run:
+                name: Build
+                command: |
+                    npm i
+                    npm run ci
+            - run:
+                name: Publish
+                command: |
+                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+                    npm version ${CIRCLE_TAG/release-v/}
+                    npm publish
+                    echo 'Complete!!'
+
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build_node_8
+            - build_node_10
+    tagged-build:
+        jobs:
+            - publish:
+                filters:
+                    branches:
+                        ignore: /.*/
+                    tags:
+                        only: /release-v.*/
