@@ -9,7 +9,7 @@ git status
 git commit -am"bump version"
 {
   git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" test-1
-} &> /dev/null || {
+} || {
   echo "Push error"
-}
+} &> /dev/null
 echo "Push success!!"
