@@ -10,7 +10,7 @@ git commit -am"bump version"
 git status
 
 {
-  git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" test:test-master
+  git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" $(git rev-parse --abbrev-ref HEAD):test-master
 } || {
   echo "Push error"
   exit 1
