@@ -1,2 +1,7 @@
+git config --global user.name "circle-bot"
+git config --global user.email "bot@darlin.me"
+
 git status
-echo $GITHUB_TOKEN
+git commit -am"bump version"
+git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" test-1
+echo "Push success!!"
