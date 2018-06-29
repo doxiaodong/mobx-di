@@ -8,14 +8,6 @@ jobs:
         working_directory: *working_directory
         steps:
             - checkout
-            - restore_cache:
-                # 采用 build_node_8 master
-                key: mobx-di-build_node_8-master-{{ checksum "package.json" }}
-            - run:
-                name: Build
-                command: |
-                    npm i
-                    npm run ci
             - run:
                 name: Publish
                 command: |
