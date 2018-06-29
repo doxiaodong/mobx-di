@@ -7,9 +7,11 @@ git config --global user.email "bot@darlin.me"
 
 git status
 git commit -am"bump version"
+
 {
-  git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" test-1
+  git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" test
 } || {
   echo "Push error"
-} &> /dev/null
+  exit 1
+}
 echo "Push success!!"
