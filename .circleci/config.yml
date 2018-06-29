@@ -53,7 +53,14 @@ jobs:
                     echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
                     npm version ${CIRCLE_TAG/release-v/}
                     npm publish
-                    echo 'Complete!!'
+                    echo "Publish success!!"
+
+            - run:
+                name: Push to Github
+                command: |
+                    sh ./git.sh
+                    git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" $(git rev-parse --abbrev-ref HEAD):master
+                    echo "Push success!!"
 
 workflows:
     version: 2
