@@ -15,7 +15,7 @@
     "codecov": "cat ./coverage/lcov.info | codecov",
     "ci": "npm run clean && tsc -d && npm run test",
     "test": "jest --coverage",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "author": "doxiaodong",
   "license": "MIT",
