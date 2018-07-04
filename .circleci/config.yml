@@ -48,13 +48,15 @@ jobs:
                     npm i
                     npm run ci
             - run:
+                name: Generate CHANGELOG.md
+                command: npm run changelog
+            - run:
                 name: Publish
                 command: |
                     echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
                     npm version ${CIRCLE_TAG/release-v/}
                     npm publish
                     echo "Publish success!!"
-
             - run:
                 name: Push to Github
                 command: |
@@ -75,4 +77,4 @@ workflows:
                     branches:
                         ignore: /.*/
                     tags:
-                        only: /release-v.*/
+                        only: /v.*/
