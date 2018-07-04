@@ -23,7 +23,7 @@
     "@types/jest": "^23.1.4",
     "@types/react": "^16.4.6",
     "codecov": "^3.0.2",
-    "conventional-changelog": "^2.0.1",
+    "conventional-changelog-cli": "^2.0.1",
     "jest": "^23.2.0",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
