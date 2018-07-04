@@ -40,8 +40,7 @@ jobs:
         steps:
             - checkout
             - restore_cache:
-                # 采用 build_node_8 master
-                key: mobx-di-build_node_8-master-{{ checksum "package.json" }}
+                key: mobx-di-tag-master-{{ checksum "package.json" }}
             - run:
                 name: Build
                 command: |
@@ -49,12 +48,13 @@ jobs:
                     npm run ci
             - run:
                 name: Generate CHANGELOG.md
-                command: npm run changelog
+                command: |
+                    npm version ${CIRCLE_TAG/v/}
+                    npm run changelog
             - run:
                 name: Publish
                 command: |
                     echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-                    npm version ${CIRCLE_TAG/release-v/}
                     npm publish
                     echo "Publish success!!"
             - run:
@@ -63,6 +63,10 @@ jobs:
                     sh ./git.sh
                     git push -q "https://$GITHUB_TOKEN@github.com/doxiaodong/mobx-di.git" $(git rev-parse --abbrev-ref HEAD):master
                     echo "Push success!!"
+            - save_cache:
+                key: mobx-di-tag-master-{{ checksum "package.json" }}
+                paths:
+                    - "node_modules"
 
 workflows:
     version: 2
