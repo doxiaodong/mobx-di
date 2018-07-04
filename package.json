@@ -1,6 +1,6 @@
 {
   "name": "mobx-di",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple DI used in mobx",
   "main": "lib/index.js",
   "module": "lib/index.js",
