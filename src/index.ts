@@ -1,4 +1,4 @@
-import 'core-js/es7/reflect'
+// import 'core-js/es7/reflect'
 
 declare namespace Reflect {
   function getMetadata(string, target?: any, key?: string): any
