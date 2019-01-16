@@ -1,4 +1,7 @@
-<a name="1.0.3"></a>
+# [1.1.0](https://github.com/doxiaodong/mobx-di/compare/v1.0.3...v1.1.0) (2019-01-16)
+
+
+
 ## [1.0.3](https://github.com/doxiaodong/mobx-di/compare/v1.0.2...v1.0.3) (2018-07-04)
 
 
@@ -8,7 +11,6 @@
 
 
 
-<a name="1.0.2"></a>
 ## [1.0.2](https://github.com/doxiaodong/mobx-di/compare/v1.0.1...v1.0.2) (2018-07-04)
 
 
@@ -18,7 +20,6 @@
 
 
 
-<a name="1.0.1"></a>
 ## [1.0.1](https://github.com/doxiaodong/mobx-di/compare/v1.0.0...v1.0.1) (2018-07-04)
 
 
@@ -34,7 +35,6 @@
 
 
 
-<a name="1.0.0"></a>
 # [1.0.0](https://github.com/doxiaodong/mobx-di/compare/1ac4494...v1.0.0) (2018-06-29)
 
 
