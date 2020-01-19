@@ -15,24 +15,26 @@
     "codecov": "cat ./coverage/lcov.info | codecov",
     "ci": "npm run clean && tsc -d && npm run test",
     "test": "jest --coverage",
+    "build": "umi build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "author": "doxiaodong",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^23.1.4",
-    "@types/react": "^16.4.6",
-    "codecov": "^3.0.2",
-    "conventional-changelog-cli": "^2.0.1",
-    "jest": "^23.2.0",
-    "mobx": "^5.0.3",
-    "mobx-react": "^5.2.3",
-    "react": "^16.4.1",
-    "ts-jest": "^23.0.0",
-    "typescript": "^2.9.2"
+    "@types/jest": "^24.9.0",
+    "@types/react": "^16.9.17",
+    "codecov": "^3.6.1",
+    "conventional-changelog-cli": "^2.0.31",
+    "jest": "^24.9.0",
+    "mobx": "^5.15.2",
+    "mobx-react": "^6.1.5",
+    "react": "^16.12.0",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5",
+    "umi": "^2.13.3"
   },
   "peerDependencies": {
-    "core-js": "^2.5.0"
+    "core-js": "^3.6.4"
   },
   "jest": {
     "transform": {
